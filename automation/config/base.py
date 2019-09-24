@@ -1,0 +1,1 @@
+APPLITOOLS_API_KEY = ''
