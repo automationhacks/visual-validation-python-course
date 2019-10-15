@@ -8,6 +8,7 @@ verify_ssl = true
 [packages]
 eyes-selenium = "*"
 pytest = "*"
+assertpy = "*"
 
 [requires]
 python_version = "3.7.4"
