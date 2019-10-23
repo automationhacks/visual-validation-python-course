@@ -5,8 +5,8 @@ from selenium import webdriver
 
 from automation.config.base import APPLITOOLS_API_KEY
 
-APP_NAME = 'automation_bookstore'
-APP_UNDER_TEST = 'file:///Users/gaurav/Self/Dev/automated-visual-testing/website/index.html'
+APP_NAME = 'the-internet'
+APP_UNDER_TEST = 'https://the-internet.herokuapp.com/dynamic_content'
 
 
 @pytest.fixture(scope='function')
@@ -31,7 +31,7 @@ def initialize_eyes():
 
 def validate_window(driver, eyes, tag=None):
     open_eyes(driver, eyes)
-    eyes.match_level = MatchLevel.CONTENT
+    eyes.match_level = MatchLevel.LAYOUT
     eyes.check_window(tag=tag)
     close_eyes(eyes)
 
