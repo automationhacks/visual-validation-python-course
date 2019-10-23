@@ -1,4 +1,5 @@
 import pytest
+from applitools.common import MatchLevel
 from applitools.selenium import Eyes
 from selenium import webdriver
 
@@ -28,8 +29,9 @@ def initialize_eyes():
     return eyes
 
 
-def validate_window(driver, eyes, tag):
+def validate_window(driver, eyes, tag=None):
     open_eyes(driver, eyes)
+    eyes.match_level = MatchLevel.CONTENT
     eyes.check_window(tag=tag)
     close_eyes(eyes)
 
