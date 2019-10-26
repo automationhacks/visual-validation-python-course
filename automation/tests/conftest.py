@@ -5,8 +5,8 @@ from selenium import webdriver
 
 from automation.config.base import APPLITOOLS_API_KEY
 
-APP_NAME = 'the-internet'
-APP_UNDER_TEST = 'https://the-internet.herokuapp.com/large'
+APP_NAME = 'automation_bookstore'
+APP_UNDER_TEST = 'file:///Users/gaurav/Self/Dev/automated-visual-testing/website/index.html'
 
 
 @pytest.fixture(scope='function')
@@ -33,6 +33,12 @@ def validate_window(driver, eyes, tag=None):
     open_eyes(driver, eyes)
     eyes.force_full_page_screenshot = True
     eyes.check_window(tag=tag)
+    close_eyes(eyes)
+
+
+def validate_element(driver, eyes, element, tag=None):
+    open_eyes(driver, eyes)
+    eyes.check_region(element, tag=tag)
     close_eyes(eyes)
 
 

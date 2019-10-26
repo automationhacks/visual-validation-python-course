@@ -1,5 +1,7 @@
-from automation.tests.conftest import validate_window
+from automation.tests.conftest import validate_element
 
 
-def test_match_level_layout(driver, eyes):
-    validate_window(driver, eyes)
+def test_book_by_region(driver, eyes):
+    element = driver.find_element_by_id('pid3')
+    validate_element(driver, eyes, element)
+
