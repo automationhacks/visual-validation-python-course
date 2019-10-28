@@ -1,12 +1,11 @@
 import pytest
-from applitools.common import MatchLevel
 from applitools.selenium import Eyes
 from selenium import webdriver
 
 from automation.config.base import APPLITOOLS_API_KEY
 
-APP_NAME = 'automation_bookstore'
-APP_UNDER_TEST = 'file:///Users/gaurav/Self/Dev/automated-visual-testing/website/index.html'
+APP_NAME = 'the-internet'
+APP_UNDER_TEST = 'https://the-internet.herokuapp.com/iframe'
 
 
 @pytest.fixture(scope='function')
@@ -39,6 +38,12 @@ def validate_window(driver, eyes, tag=None):
 def validate_element(driver, eyes, element, tag=None):
     open_eyes(driver, eyes)
     eyes.check_region(element, tag=tag)
+    close_eyes(eyes)
+
+
+def validate_frame(driver, eyes, frame_reference, region, tag=None):
+    open_eyes(driver, eyes)
+    eyes.check_region_in_frame(frame_reference, region, tag=tag)
     close_eyes(eyes)
 
 
