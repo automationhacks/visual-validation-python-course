@@ -105,3 +105,6 @@ venv.bak/
 
 # editor specific
 .idea/
+
+# pdf files
+.pdf
