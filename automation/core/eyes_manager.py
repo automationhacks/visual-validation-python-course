@@ -1,7 +1,14 @@
+import os
+
 from applitools.common import BatchInfo
 from applitools.selenium import Eyes
 
 from automation.config.base import APPLITOOLS_API_KEY
+from automation.core.helper import get_resources_dir_path
+from automation.core.io import execute_cmd
+
+IMAGE_TESTER_PATH = "{}/libs/ImageTester_0_4_8.jar".format(
+    os.environ.get('HOME'))
 
 
 class EyesManager:
@@ -35,6 +42,18 @@ class EyesManager:
 
     def validate_frame(self, frame_reference, region, tag=None):
         self.eyes.check_region_in_frame(frame_reference, region, tag=tag)
+
+    @staticmethod
+    def validate_pdf():
+        cmd = """java -jar {} -k {} -f {}""".format(IMAGE_TESTER_PATH,
+                                                    APPLITOOLS_API_KEY,
+                                                    get_resources_dir_path())
+
+        output, _ = execute_cmd(cmd)
+        str_output = output.decode('utf-8')
+
+        print('Command execution completed... \n' + str_output)
+        return str_output
 
     def open_eyes(self, test_name):
         self.eyes.open(self.driver, self.app_name,
