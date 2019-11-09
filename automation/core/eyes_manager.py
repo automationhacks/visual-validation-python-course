@@ -1,6 +1,6 @@
 import os
 
-from applitools.common import BatchInfo
+from applitools.common import BatchInfo, MatchLevel
 from applitools.selenium import Eyes
 
 from automation.config.base import APPLITOOLS_API_KEY
@@ -31,10 +31,12 @@ class EyesManager:
             batch_info = BatchInfo(batch_name)
             self.eyes.batch = batch_info
 
-    def validate_window(self, tag=None, full_page=False):
+    def validate_window(self, tag=None, full_page=False,
+                        match_level=MatchLevel.STRICT):
         if full_page:
             self.eyes.force_full_page_screenshot = True
 
+        self.eyes.match_level = match_level
         self.eyes.check_window(tag=tag)
 
     def validate_element(self, element, tag=None):
